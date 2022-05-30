@@ -1,20 +1,80 @@
-// варианты записи функций
+// Higher order function
 
-// 1. Function Declaration
-function sum(a, b) {
-    return a + b;
+// function twoSquared() {
+//     return 2 * 2;
+// }
+// twoSquared();
+
+// function threeSquared() {
+//     return 3 * 3;
+// }
+// threeSquared();
+
+/*
+function numSquared(num) {
+    return num * num;
+}
+// numSquared();
+
+function copyArraySquareNums(arr) {
+    const output = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        output.push(arr[i] ** 2);
+    }
+
+    return output;
 }
 
-// 2. Function Expression
-const sum = function(a, b) {
-    return a + b;
+const nums = [1, 2, 3, 4, 5];
+const res = copyArraySquareNums(nums);
+console.log('Массив nums: ', nums);
+console.log('Массив nums * 2 :', res);
+
+function copyArrayAndDivideByTwo(arr) {
+    const output = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        output.push(arr[i] / 2);
+    }
+
+    return output;
 }
 
-// 3. IIFE
-(function(a, b) {
-    return a + b;
-})()
+const res2 = copyArrayAndDivideByTwo(nums);
+console.log('Массив nums / 2: ', res2);
+console.log('Массив nums после всех манипуляций остался безизменений: ', nums);
+*/
 
-// 4. Arrow function
-const sum = (a, b) => a + b;
+//......................................................................
+
+// Callback functions
+
+const arr2 = [1, 2, 3, 4, 5, 6];
+
+function copyArrayAndDoIt(arr, instruction) {
+    const output = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        output.push(instruction(arr[i]));
+    }
+
+    return output;
+}
+
+function numSquared(num) {
+    return num * num;
+}
+
+function numDivide(num) {
+    return num / 2;
+}
+
+const result = copyArrayAndDoIt(arr2, numSquared);
+const result2 = copyArrayAndDoIt(arr2, numDivide);
+
+console.log(arr2);
+console.log(result);
+console.log(result2);
+console.log(arr2);
 
