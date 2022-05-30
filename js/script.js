@@ -1,80 +1,42 @@
-// Higher order function
+// Recursion - функция вызывающая сама себя
 
-// function twoSquared() {
-//     return 2 * 2;
-// }
-// twoSquared();
+// 1. Базовые условие (терминальное)
+// 2. Правило движения по рекурсии
 
-// function threeSquared() {
-//     return 3 * 3;
+// function recurse() {
+//     return recurse();
 // }
-// threeSquared();
 
 /*
-function numSquared(num) {
-    return num * num;
-}
-// numSquared();
+function factorial(n) {
+    if (n === 0) return 1;         // Базовое условие
 
-function copyArraySquareNums(arr) {
-    const output = [];
-
-    for (let i = 0; i < arr.length; i++) {
-        output.push(arr[i] ** 2);
-    }
-
-    return output;
+    return n * factorial(n - 1);
 }
 
-const nums = [1, 2, 3, 4, 5];
-const res = copyArraySquareNums(nums);
-console.log('Массив nums: ', nums);
-console.log('Массив nums * 2 :', res);
-
-function copyArrayAndDivideByTwo(arr) {
-    const output = [];
-
-    for (let i = 0; i < arr.length; i++) {
-        output.push(arr[i] / 2);
-    }
-
-    return output;
-}
-
-const res2 = copyArrayAndDivideByTwo(nums);
-console.log('Массив nums / 2: ', res2);
-console.log('Массив nums после всех манипуляций остался безизменений: ', nums);
+console.log(factorial(3)); 
+console.log(factorial(4)); // 4 * 3 * 2 * 1
+console.log(factorial(5));
+console.log(factorial(6));
+console.log(factorial(7));
 */
 
-//......................................................................
+// функция принимае символ и возвращает его п пяти экземплярах
 
-// Callback functions
+let counter = 0;
 
-const arr2 = [1, 2, 3, 4, 5, 6];
+function repeater(char) { 
+    
+    counter++;
 
-function copyArrayAndDoIt(arr, instruction) {
-    const output = [];
-
-    for (let i = 0; i < arr.length; i++) {
-        output.push(instruction(arr[i]));
+    if (counter === 5) {
+        counter = 0;
+        return char;
     }
 
-    return output;
+    return char + repeater(char);
 }
 
-function numSquared(num) {
-    return num * num;
-}
-
-function numDivide(num) {
-    return num / 2;
-}
-
-const result = copyArrayAndDoIt(arr2, numSquared);
-const result2 = copyArrayAndDoIt(arr2, numDivide);
-
-console.log(arr2);
-console.log(result);
-console.log(result2);
-console.log(arr2);
-
+console.log(repeater('H '));
+console.log(repeater('Hello! '));
+console.log(repeater('1920 год. '));
