@@ -1,42 +1,30 @@
-// Recursion - функция вызывающая сама себя
+// Closure (замыкания)
 
-// 1. Базовые условие (терминальное)
-// 2. Правило движения по рекурсии
+// 1. Функции возвращающие другие функции
+// 2. Возвращаемая функция запоминает scope (все переменные каторые она видит)
 
-// function recurse() {
-//     return recurse();
-// }
+function hello(name) {
+    const helloName = () => console.log('hello!, ', name);
 
-/*
-function factorial(n) {
-    if (n === 0) return 1;         // Базовое условие
-
-    return n * factorial(n - 1);
+    return helloName;
 }
 
-console.log(factorial(3)); 
-console.log(factorial(4)); // 4 * 3 * 2 * 1
-console.log(factorial(5));
-console.log(factorial(6));
-console.log(factorial(7));
-*/
+const hell = hello('John');
+hell();
 
-// функция принимае символ и возвращает его п пяти экземплярах
-
-let counter = 0;
-
-function repeater(char) { 
+function outer() {
+    let counter = 0;
     
-    counter++;
-
-    if (counter === 5) {
-        counter = 0;
-        return char;
+    function incrementCounter() {
+        console.log(++counter);
     }
 
-    return char + repeater(char);
+    return incrementCounter;
 }
 
-console.log(repeater('H '));
-console.log(repeater('Hello! '));
-console.log(repeater('1920 год. '));
+const myCount1 = outer();
+myCount1();
+myCount1();
+myCount1();
+myCount1();
+myCount1();
